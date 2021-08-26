@@ -21,10 +21,10 @@ while active:
         elif tax.find("."):
             tax = float(tax)
 
-        if not -100.0 < tax <= 100.0:
-            raise ValueError("Informe um valor inteiro! Reiniciando o programa!")
+        if not -100.0 < float(tax) <= 100.0:
+            raise ValueError("Informe um valor entre -100.0 e 100.0! Reiniciando o programa!")
         else:
-            tax = tax / 100
+            tax = float(tax) / 100
             print(tax)
 
         tipo = str(input(f"Juros Simples ou Juros Composto [S ou C]: "))
