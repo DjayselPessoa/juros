@@ -16,10 +16,15 @@ while active:
             raise ValueError("Informação incorreta!")
 
         tax = str(input(f"Informe o valor dos juros: "))
-        if not -100 < int(tax) <= 100:
+        if tax.find(","):
+            tax = float(tax.replace(",", "."))
+        elif tax.find("."):
+            tax = float(tax)
+
+        if not -100.0 < tax <= 100.0:
             raise ValueError("Informe um valor inteiro! Reiniciando o programa!")
         else:
-            tax = float(tax) / 100
+            tax = tax / 100
             print(tax)
 
         tipo = str(input(f"Juros Simples ou Juros Composto [S ou C]: "))
@@ -60,8 +65,9 @@ while active:
             valorFinalJuros = totalParcelas - emprestimoFinal
             valorFinalJuros = round(valorFinalJuros, 2)
             totalParcelas = round(totalParcelas, 2)
-
-            print(f"Valor solicitado: R$ {emprestimoFinal}\nValor final total com juros composto: R$ {totalParcelas}\nValor total dos juros adicionado: R$ {valorFinalJuros}\n")
+            tax2 = tax * 100
+            tax2 = round(tax2, 2)
+            print(f"Valor solicitado: R$ {emprestimoFinal}\nValor final total com juros composto no valor de {tax2}%: R$ {totalParcelas}\nValor total dos juros adicionado: R$ {valorFinalJuros}\n")
         
         elif tipo == "S" or tipo == "s":
             # juros simples
@@ -84,8 +90,9 @@ while active:
 
             valorParcela = (emprestimoFinal / parcelas) + (calc / parcelas)
             valorParcela = round(valorParcela, 2)
-            
-            print(f"Valor solicitado: R$ {emprestimoFinal}\nValor final total com juros simples: R$ {valorFinalJuros}\nValor total dos juros adicionado: R$ {calc}\nValor de cada uma das {escolha} parcelas: R$ {valorParcela}")
+            tax2 = tax * 100 
+            tax2 = round(tax2, 2)
+            print(f"Valor solicitado: R$ {emprestimoFinal}\nValor final total com juros simples no valor de {tax2}%: R$ {valorFinalJuros}\nValor total dos juros adicionado: R$ {calc}\nValor de cada uma das {escolha} parcelas: R$ {valorParcela}")
 
         else:
             active = True
